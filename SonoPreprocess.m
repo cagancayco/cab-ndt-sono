@@ -12,6 +12,8 @@ e_tolerance = 0.21;
 
 %% Preprocess okay signals
 
+counter = 0;
+fixed = [];
 for i = 1:length(sono_struct)
     sono_struct(i).ipts = [];
     sono_struct(i).outlier_types = [];
@@ -29,10 +31,13 @@ for i = 1:length(sono_struct)
             
             sono_struct(i).outlier_types = {'outlier'};            
            
+            counter = counter + 1; fixed = [fixed; i];
         end
         
     plot(sono_struct(i).raw,'*-'); hold on; plot(sono_struct(i).outliers,sono_struct(i).raw(sono_struct(i).outliers),'*r'); plot(sono_struct(i).auto_preprocessed,'g'); hold off    
         
     end
+
+    
 end
 
